@@ -98,7 +98,7 @@ sourceSets {
 task sourceJar(type: Jar) {
   description = 'Builds a source jar artifact suitable for maven deployment.'
   classifier = 'sources'
-  from sourceSets.main.java
+  from sourceSets.main.allJava
 }
 
 task javadoc(type: Javadoc, overwrite:true) {

@@ -5,14 +5,16 @@ apply plugin: 'maven-publish'
 publishing {
 
     publications {
-        mod(MavenPublication) {
+        mavenJava(MavenPublication) {
             groupId modowner
             artifactId modname
             version version
-            artifact archives
-            artifact sourceJar
-            artifact javadocJar
-            artifact modZip
+
+            from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
         }
     }
 
