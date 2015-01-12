@@ -9,6 +9,8 @@ publishing {
             groupId modowner
             artifactId modname
             version version
+            artifact archives
+            artifact sourceJar
             artifact javadocJar
             artifact modZip
         }
