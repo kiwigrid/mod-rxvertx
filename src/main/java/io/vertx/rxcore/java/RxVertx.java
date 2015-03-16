@@ -1,6 +1,7 @@
 package io.vertx.rxcore.java;
 
 import io.vertx.rxcore.java.eventbus.RxEventBus;
+import io.vertx.rxcore.java.filesystem.RxFileSystem;
 import io.vertx.rxcore.java.http.RxHttpClient;
 import io.vertx.rxcore.java.http.RxHttpServer;
 import io.vertx.rxcore.java.impl.ContextScheduler;
@@ -69,7 +70,10 @@ public class RxVertx {
     return new RxHttpClient(core.createHttpClient());
   }
 
-  // TODO: createFileSystem 
+	/** Create FileSystem */
+  public RxFileSystem fileSystem(){
+	  return new RxFileSystem(core.fileSystem());
+  }
 
   /** Return EventBus */
   public RxEventBus eventBus() {
