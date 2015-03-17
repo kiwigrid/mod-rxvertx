@@ -350,12 +350,23 @@ public class RxFileSystem {
 	 */
 	public Observable<Buffer> readFile(String path)
 	{
+		return readFileChunked(path).reduce(new Buffer(), RxSupport.mergeBuffers);
+	}
+
+	/**
+	 * Reads the file as represented by the path {@code path} as a {@link Buffer}, asynchronously.<p>
+	 * The {@link rx.Subscriber#onNext(Object)} Method will be invoked by each chunk read.
+	 *
+	 * @param path
+	 */
+	public Observable<Buffer> readFileChunked(String path)
+	{
 		return open(path, null, true, false, false).flatMap(new Func1<RxFile, Observable<Buffer>>() {
 			@Override
 			public Observable<Buffer> call(RxFile rxFile) {
 				return rxFile.read();
 			}
-		}).reduce(new Buffer(), RxSupport.mergeBuffers);
+		});
 	}
 
 	/**
